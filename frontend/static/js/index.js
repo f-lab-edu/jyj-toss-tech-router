@@ -32,7 +32,7 @@ const router = () => {
       isMatch: route.path === location.pathname,
     };
   });
-  console.log(Matches);
+
   let match = Matches.find((Match) => Match.isMatch);
   if (!match) {
     match = {
@@ -40,17 +40,17 @@ const router = () => {
       isMatch: true,
     };
   }
-  console.log(match);
+
   const view = new match.route.view();
   document.querySelector("#app").innerHTML = view.render();
 };
-window.addEventListener("popstate", router);
+window.addEventListener("popstate", router); // 뒤로가기, 앞으로가기인 경우 url 이동 처리
 
 document.body.addEventListener("click", (e) => {
   if (e.target.matches("[data-link]")) {
     e.preventDefault();
-    console.log(e.target.href);
-    history.pushState(null, null, e.target.href);
+
+    history.pushState(null, null, e.target.href); //클릭해서 url 이동
     router();
   }
 });
