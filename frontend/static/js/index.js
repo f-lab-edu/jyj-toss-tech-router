@@ -54,5 +54,4 @@ document.body.addEventListener("click", (e) => {
     router();
   }
 });
-
 router();
